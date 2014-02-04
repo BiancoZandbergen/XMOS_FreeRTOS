@@ -59,7 +59,7 @@ OBJS+=integer.o BlockQ.o PollQ.o
 all: $(PROGRAM)
 
 $(PROGRAM): $(OBJS)
-	xcc $(DEBUG) $(CFLAGS)  $(OBJS) -o $(PROGRAM)
+	xcc -report $(DEBUG) $(CFLAGS)  $(OBJS) -o $(PROGRAM)
 
 tasks.o: $(SOURCE_DIR)/tasks.c FreeRTOSConfig.h
 	xcc -c $(SRC_OPT) $(CFLAGS)  $(SOURCE_DIR)/tasks.c

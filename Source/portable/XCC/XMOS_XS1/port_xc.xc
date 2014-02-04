@@ -55,12 +55,17 @@
  * File:     port_xc.xc                                                       *
  * Author:   Bianco Zandbergen  (bianco [at] zandbergen [dot] name)           *
  * Changes:  12 feb 2010, initial release                                     *
+ *           4  feb 2014, Patch for xTIME Composer Studio 13 and newer.       *
+ *                        Timer is now declared as hwtimer_t type.            *
+ *                        This will declare a dedicated timer directly        *
+ *                        accessible by assembly code.                        *
+ *                        This breaks with previous versions of tools.        *
  *                                                                            *
  * Port specific code that cannot be expressed in C but can in XC.            *
  * Currently only contains the timer declaration used to generate clock       *
  * interrupts. It is possible to move this to the assembly file.              *
  *                                                                            *
  ******************************************************************************/
-#include <xs1.h>
+#include <hwtimer.h>
 
-timer tickclock; // timer to generate clock interrupts
+hwtimer_t tickclock; // timer to generate clock interrupts

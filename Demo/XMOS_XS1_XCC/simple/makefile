@@ -24,13 +24,19 @@ ifeq ($(BOARD),XC_5)
 	TARGET=XC-5
 endif
 ifeq ($(BOARD),XK_1)
-	TARGET=XK-1
+	TARGET=XS1-L8A-64-TQ128-C5
+endif
+ifeq ($(BOARD),XK_1A)
+	TARGET=XK-1A
 endif
 ifeq ($(BOARD),XDK)
 	TARGET=XDK
 endif
 ifeq ($(BOARD),STARTKIT)
 	TARGET=STARTKIT
+endif
+ifeq ($(BOARD),SLICEKIT_L16)
+	TARGET=SLICEKIT-L16
 endif
 
 # program executable name

@@ -29,6 +29,9 @@ unsigned long mask            = 0x0F;
 #elif defined(XK_1)
 on stdcore[0] : out port leds = XS1_PORT_4F;
 unsigned long mask            = 0x0F;
+#elif defined(XK_1A)
+on stdcore[0] : out port leds = XS1_PORT_4F;
+unsigned long mask            = 0x0F;
 #elif defined(XDK)
 on stdcore[0] : out port leds = XS1_PORT_1F;
 unsigned long mask            = 0x01;

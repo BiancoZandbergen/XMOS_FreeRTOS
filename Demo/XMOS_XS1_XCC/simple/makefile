@@ -5,7 +5,7 @@
 # valid options with configured LED output are:
 # XC_1, XC_1A, XC_2, XC_5, XK_1, XDK
 # Use CUSTOM to specify own target (need to modify ParTest.xc in this case)
-BOARD=XC_1
+BOARD=STARTKIT
 
 # specify target processor here if board is CUSTOM
 ifeq ($(BOARD),CUSTOM)
@@ -28,6 +28,9 @@ ifeq ($(BOARD),XK_1)
 endif
 ifeq ($(BOARD),XDK)
 	TARGET=XDK
+endif
+ifeq ($(BOARD),STARTKIT)
+	TARGET=STARTKIT
 endif
 
 # program executable name
@@ -87,7 +90,7 @@ main.o: main.c FreeRTOSConfig.h
 	xcc -c $(SRC_OPT) $(CFLAGS) $(INCLUDE_COMMON) main.c
 
 ParTest.o: ParTest/ParTest.xc
-	xcc -c $(SRC_OPT) $(CFLAGS) -D BOARD=$(BOARD) ParTest/ParTest.xc
+	xcc -c $(SRC_OPT) $(CFLAGS) -D $(BOARD) ParTest/ParTest.xc
 
 integer.o: $(DEMO_DIR)/integer.c
 	xcc -c $(SRC_OPT) $(CFLAGS) $(INCLUDE_COMMON) $(DEMO_DIR)/integer.c

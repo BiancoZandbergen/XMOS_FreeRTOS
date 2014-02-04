@@ -89,7 +89,7 @@ main.o: main.c FreeRTOSConfig.h
 	xcc -c $(SRC_OPT) $(CFLAGS) $(INCLUDE_COMMON) main.c
 
 ParTest.o: ParTest/ParTest.xc
-	xcc -c $(SRC_OPT) $(CFLAGS) -D BOARD=$(BOARD) ParTest/ParTest.xc
+	xcc -c $(SRC_OPT) $(CFLAGS) -D $(BOARD) ParTest/ParTest.xc
 
 integer.o: $(DEMO_DIR)/integer.c
 	xcc -c $(SRC_OPT) $(CFLAGS) $(INCLUDE_COMMON) $(DEMO_DIR)/integer.c

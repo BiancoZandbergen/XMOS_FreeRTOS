@@ -20,24 +20,24 @@
 #include "QueueTest/PollQ.h"
 #include "partest.h"
 
-#define mainMATH_PRIORITY				(tskIDLE_PRIORITY + 1)
-#define mainBLOCKED_QUEUE_PRIORITY		(tskIDLE_PRIORITY + 2)
-#define mainPOLLED_QUEUE_PRIORITY		(tskIDLE_PRIORITY + 2)
-#define mainCHECK_PRIORITY 				(tskIDLE_PRIORITY + 3)
+#define mainMATH_PRIORITY        (tskIDLE_PRIORITY + 1)
+#define mainBLOCKED_QUEUE_PRIORITY    (tskIDLE_PRIORITY + 2)
+#define mainPOLLED_QUEUE_PRIORITY    (tskIDLE_PRIORITY + 2)
+#define mainCHECK_PRIORITY         (tskIDLE_PRIORITY + 3)
 
 void vCheckTasks();
 int vParTestSetLed(unsigned long value);
 
 int main(void)
 {
-	vParTestInitialise();
-	vStartIntegerMathTasks(mainMATH_PRIORITY);
-	vStartBlockedQueueTest(mainBLOCKED_QUEUE_PRIORITY);
-	vStartPolledQueueTest(mainPOLLED_QUEUE_PRIORITY);
-	xTaskCreate(vCheckTasks, (signed char *) "check", 85, NULL, mainCHECK_PRIORITY, NULL);
-	vTaskStartScheduler();
+  vParTestInitialise();
+  vStartIntegerMathTasks(mainMATH_PRIORITY);
+  vStartBlockedQueueTest(mainBLOCKED_QUEUE_PRIORITY);
+  vStartPolledQueueTest(mainPOLLED_QUEUE_PRIORITY);
+  xTaskCreate(vCheckTasks, (signed char *) "check", 85, NULL, mainCHECK_PRIORITY, NULL);
+  vTaskStartScheduler();
 
-	return 0; /* should not reach */
+  return 0; /* should not reach */
 }
 
 /* check if tasks are still running OK.
@@ -46,44 +46,44 @@ int main(void)
  */
 void vCheckTasks()
 {
-	#define TEST_ERROR 1
-	#define TEST_FINE  0
+  #define TEST_ERROR 1
+  #define TEST_FINE  0
 
-	int led_state = 0;
-	int test_state = TEST_FINE;
+  int led_state = 0;
+  int test_state = TEST_FINE;
 
-	while(1) {
-		
-		vTaskDelay(500);
+  while(1) {
+    
+    vTaskDelay(100);
 
-		if (test_state == TEST_FINE) {
-			if (xAreIntegerMathsTaskStillRunning() != pdTRUE) {
-				test_state = TEST_ERROR;
-			}
+    if (test_state == TEST_FINE) {
+      if (xAreIntegerMathsTaskStillRunning() != pdTRUE) {
+        test_state = TEST_ERROR;
+      }
 
-			if (xAreBlockingQueuesStillRunning() != pdTRUE) {
-				test_state = TEST_ERROR;
-			}
-	
-			if (xArePollingQueuesStillRunning() != pdTRUE) {
-				test_state = TEST_ERROR;
-			}
-			
-		}
+      if (xAreBlockingQueuesStillRunning() != pdTRUE) {
+        test_state = TEST_ERROR;
+      }
+  
+      if (xArePollingQueuesStillRunning() != pdTRUE) {
+        test_state = TEST_ERROR;
+      }
+      
+    }
 
-		if (test_state == TEST_FINE) {
-			if (led_state) {
-				led_state = 0;
-				vParTestSetLed((unsigned long)led_state);
-			} else {
-				led_state = 1;
-				vParTestSetLed((unsigned long)led_state);
-			}
-		}
-	}
+    if (test_state == TEST_FINE) {
+      if (led_state) {
+        led_state = 0;
+        vParTestSetLed((unsigned long)led_state);
+      } else {
+        led_state = 1;
+        vParTestSetLed((unsigned long)led_state);
+      }
+    }
+  }
 }
 
 void vApplicationIdleHook(void)
 {
-	while(1);
+  while(1);
 }

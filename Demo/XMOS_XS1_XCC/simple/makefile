@@ -1,9 +1,8 @@
 # Makefile for the FreeRTOS XMOS XS1 port.
-# Works on GNU/Linux and Mac OS X.
-# Might need modification on Windows.
+# Works on GNU/Linux, Mac OS X and Windows
 
 # valid options with configured LED output are:
-# XC_1, XC_1A, XC_2, XC_5, XK_1, XDK
+# XC_1, XC_1A, XC_2, XC_5, XK_1, XK_1A, XDK, STARTKIT
 # Use CUSTOM to specify own target (need to modify ParTest.xc in this case)
 BOARD=STARTKIT
 
